@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pokemon List</title>
+        <title>Pokemon List - CSR</title>
       </Head>
       <div className={styles.grid}>
         {pokemon.map((pokemon) => (
