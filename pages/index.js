@@ -3,26 +3,24 @@ import {useEffect, useState} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+export async function getServerSideProps() {
+  const resp = await fetch('https://jherr-pokemon.s3.amazonaws.com/index.json');
+  const pokemon = await resp.json();
+  return {
+    props: {
+      pokemon: pokemon,
+    },
+  };
+}
 
-export default function Home() {
-  const [pokemon, setPokemon] = useState([]);
-
-  useEffect(() => {
-    const getPokemon = () => {
-      fetch('https://jherr-pokemon.s3.amazonaws.com/index.json')
-        .then((res) => res.json())
-        .then((data) => {
-          setPokemon(data);
-        });
-    };
-    getPokemon();
-  }, []);
+export default function Home(props) {
+  const {pokemon} = props;
 
   console.log(pokemon);
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pokemon List</title>
+        <title>Pokemon List - SSR</title>
       </Head>
       <div className={styles.grid}>
         {pokemon.map((pokemon) => (
