@@ -18,7 +18,6 @@ export default function Home() {
     getPokemon();
   }, []);
 
-  console.log(pokemon);
   return (
     <div className={styles.container}>
       <Head>
